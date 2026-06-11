@@ -1,6 +1,7 @@
 // Shared Bootstrap loader for static HTML pages.
 (function () {
     var cssSelector = 'link[data-bootstrap-local="true"]';
+    var iconCssSelector = 'link[data-bootstrap-icons-local="true"]';
     var jsSelector = 'script[data-bootstrap-local="true"]';
 
     if (!document.querySelector(cssSelector)) {
@@ -17,5 +18,12 @@
         script.defer = true;
         script.setAttribute('data-bootstrap-local', 'true');
         document.head.appendChild(script);
+    }
+    if (!document.querySelector(iconCssSelector)) {
+        var iconLink = document.createElement('link');
+        iconLink.rel = 'stylesheet';
+        iconLink.href = './node_modules/bootstrap-icons/font/bootstrap-icons.min.css';
+        iconLink.setAttribute('data-bootstrap-icons-local', 'true');
+        document.head.appendChild(iconLink);
     }
 })();
